@@ -16,3 +16,14 @@ I published my full submission on DEV.to with the complete walkthrough, architec
 ## About This Project
 
 This project turns a startup idea into an execution-ready Notion workspace using AI. It generates a startup plan, creates a structured dashboard, and builds a task system that supports iterative progress updates.
+
+
+## Social Links
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/orpheusdark/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/orpheusdark)
+[![LeetCode](https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=black)](https://leetcode.com/u/nirantchavda/)
+[![CodeChef](https://img.shields.io/badge/CodeChef-5B4638?style=for-the-badge&logo=codechef&logoColor=white)](https://www.codechef.com/users/orpheusdark)
+[![Codeforces](https://img.shields.io/badge/Codeforces-1F8ACB?style=for-the-badge&logo=codeforces&logoColor=white)](https://codeforces.com/profile/orpheusdark)
+[![DEV](https://img.shields.io/badge/DEV-0A0A0A?style=for-the-badge&logo=devdotto&logoColor=white)](https://dev.to/orpheusdark)
+[![Unstop](https://img.shields.io/badge/Unstop-0A66FF?style=for-the-badge&logoColor=white)](https://unstop.com/u/nirancha9563)
