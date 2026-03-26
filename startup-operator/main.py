@@ -6,7 +6,7 @@ import sys
 
 from ai_agent import AIAgent
 from config import load_settings
-from notion_client import NotionStartupClient
+from notion_api_client import NotionStartupClient
 from utils import ValidationError, comma_split
 
 

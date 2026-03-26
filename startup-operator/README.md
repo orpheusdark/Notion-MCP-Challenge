@@ -29,7 +29,7 @@ The app uses OpenAI to generate structured startup plans and task backlogs, then
 startup-operator/
 ├── main.py
 ├── ai_agent.py
-├── notion_client.py
+├── notion_api_client.py
 ├── config.py
 ├── utils.py
 ├── requirements.txt
@@ -115,7 +115,7 @@ Adding next tasks to Notion:
   - Uses deterministic generation (`temperature=0`)
   - Enforces JSON-only responses with strict schema prompts
 
-- `notion_client.py`
+- `notion_api_client.py`
   - Encapsulates Notion API calls using official `notion-client`
   - Creates dashboard page and tasks database
   - Adds and updates tasks
