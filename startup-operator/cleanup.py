@@ -3,10 +3,10 @@ Clean up old Notion dashboards from the parent page.
 Archives all child page blocks (startup dashboards) to allow fresh starts.
 """
 
-from config import Settings
+from config import load_settings
 from notion_client import Client
 
-def cleanup_pages(settings: Settings) -> None:
+def cleanup_pages(settings) -> None:
     """Archive all child pages under the parent page."""
     client = Client(auth=settings.notion_api_key)
     
@@ -36,6 +36,7 @@ def cleanup_pages(settings: Settings) -> None:
         print(f"Error accessing parent page: {e}")
         print("Manual cleanup: Go to your Notion page and archive the dashboards manually.")
 
+
 if __name__ == "__main__":
-    settings = Settings()
+    settings = load_settings()
     cleanup_pages(settings)

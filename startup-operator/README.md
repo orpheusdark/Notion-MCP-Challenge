@@ -63,7 +63,7 @@ startup-operator/
 pip install -r requirements.txt
 ```
 
-4. Create a `.env` file in the `startup-operator` folder:
+4. Create a `.env` file in the `startup-operator` folder (use `.env.example` as a template):
 
 ```env
 GROQ_API_KEY=your_groq_api_key
@@ -71,6 +71,8 @@ GROQ_MODEL=llama-3.3-70b-versatile
 NOTION_API_KEY=your_notion_integration_secret
 NOTION_PARENT_PAGE_ID=your_notion_parent_page_id
 ```
+
+**Important:** The `.env` file is gitignored and never committed to GitHub. Keep your secrets safe!
 
 ## Notion Preparation
 
