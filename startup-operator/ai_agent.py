@@ -1,11 +1,11 @@
-"""OpenAI-powered planning agent for startup operations."""
+"""Groq-powered planning agent for startup operations."""
 
 from __future__ import annotations
 
 import json
 from typing import Any
 
-from openai import OpenAI
+from groq import Groq
 
 from config import Settings
 from utils import parse_json_strict, validate_initial_plan, validate_iteration_plan
@@ -15,8 +15,8 @@ class AIAgent:
     """Encapsulates all LLM interactions with strict JSON contracts."""
 
     def __init__(self, settings: Settings) -> None:
-        self.client = OpenAI(api_key=settings.openai_api_key)
-        self.model = settings.openai_model
+        self.client = Groq(api_key=settings.groq_api_key)
+        self.model = settings.groq_model
 
     def generate_initial_plan(self, idea: str) -> dict[str, Any]:
         """Generate startup dashboard content and initial task list."""
@@ -82,18 +82,34 @@ class AIAgent:
         return validate_iteration_plan(parse_json_strict(raw))
 
     def _chat_json(self, system_prompt: str, user_prompt: str) -> str:
-        """Call OpenAI chat completion with deterministic JSON output."""
-        response = self.client.chat.completions.create(
-            model=self.model,
-            temperature=0,
-            response_format={"type": "json_object"},
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt},
-            ],
-        )
+        """Call Groq API with deterministic JSON output."""
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                temperature=0,
+                response_format={"type": "json_object"},
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt},
+                ],
+            )
+        except Exception as exc:
+            error_message = str(exc)
+            if "401" in error_message or "authentication" in error_message.lower():
+                raise RuntimeError(
+                    "Groq authentication failed. Check GROQ_API_KEY in .env."
+                ) from exc
+            if "429" in error_message or "quota" in error_message.lower():
+                raise RuntimeError(
+                    "Groq quota exceeded (429). Wait a moment and retry, or check your Groq rate limits."
+                ) from exc
+            if "connection" in error_message.lower():
+                raise RuntimeError(
+                    "Could not connect to Groq API. Check internet connection and retry."
+                ) from exc
+            raise RuntimeError(f"Groq API request failed: {error_message}") from exc
 
         content = response.choices[0].message.content
         if not content:
-            raise ValueError("OpenAI returned empty response content")
+            raise ValueError("Groq returned empty response content")
         return content

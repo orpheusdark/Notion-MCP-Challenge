@@ -2,21 +2,31 @@
 
 A production-ready CLI system that turns a startup idea into an operating dashboard in Notion.
 
-The app uses OpenAI to generate structured startup plans and task backlogs, then uses the Notion API to create and maintain your startup workspace.
+The app uses Groq to generate structured startup plans and task backlogs, then uses the Notion API to create and maintain your startup workspace.
 
 ## Features
 
 - CLI prompt: capture a startup idea in one line
 - Deterministic AI planning with strict JSON output
-- Automatic Notion setup:
-  - creates a Startup Dashboard page
-  - creates a Tasks database with `Name`, `Status`, and `Priority`
-- Auto-population of dashboard content:
-  - vision
-  - key features
-  - roadmap phases
-- Auto-population of initial tasks
-- Continuous update loop:
+- **Advanced Notion dashboard:**
+  - Cover images and emoji for visual appeal
+  - Rich formatting (callouts, tables, colored text)
+  - Multiple database views (Board/Kanban, Calendar, Table)
+- **Rich task management:**
+  - Status tracking with multiple states (Not Started, In Progress, In Review, Done, Blocked)
+  - Priority levels (Low, Medium, High)
+  - Due date scheduling
+  - Effort estimation (hours)
+  - Team/department assignment
+  - Multi-select tags (Feature, Bug Fix, Research, Design, Infrastructure)
+  - Progress percentage tracking
+  - Task dependencies
+- **Auto-population of dashboard content:**
+  - vision with callout formatting
+  - key features with emoji
+  - roadmap phases with table formatting
+- **Auto-population of initial tasks with advanced properties**
+- **Continuous update loop:**
   - mark completed tasks in Notion
   - ask AI for next tasks and suggestions
   - append new tasks to Notion
@@ -39,7 +49,7 @@ startup-operator/
 ## Requirements
 
 - Python 3.10+
-- OpenAI API key
+- Groq API key
 - Notion internal integration token
 - A Notion parent page shared with your integration
 
@@ -56,8 +66,8 @@ pip install -r requirements.txt
 4. Create a `.env` file in the `startup-operator` folder:
 
 ```env
-OPENAI_API_KEY=your_openai_api_key
-OPENAI_MODEL=gpt-4o-mini
+GROQ_API_KEY=your_groq_api_key
+GROQ_MODEL=llama-3.3-70b-versatile
 NOTION_API_KEY=your_notion_integration_secret
 NOTION_PARENT_PAGE_ID=your_notion_parent_page_id
 ```
@@ -111,7 +121,7 @@ Adding next tasks to Notion:
   - Handles user interactions and top-level errors
 
 - `ai_agent.py`
-  - Encapsulates OpenAI API calls
+  - Encapsulates Groq API calls using OpenAI-compatible SDK
   - Uses deterministic generation (`temperature=0`)
   - Enforces JSON-only responses with strict schema prompts
 
@@ -132,7 +142,7 @@ Adding next tasks to Notion:
 ## Design Notes
 
 - JSON Strictness:
-  - The OpenAI call requests JSON object output only.
+  - The Groq call requests JSON object output only.
   - Responses are parsed with strict JSON loading.
   - Schema fields are validated and normalized before any Notion writes.
 
