@@ -7,6 +7,8 @@ This project was built for the DEV Community Notion MCP Challenge.
 
 - Challenge page: [Notion MCP Challenge](https://dev.to/challenges/notion-2026-03-04)
 
+<img width="192" height="192" alt="https___dev-to-uploads s3 amazonaws com_uploads_badge_badge_image_451_completion_badge" src="https://github.com/user-attachments/assets/34fa78e7-aff6-436c-b98c-f83bd7b18d8e" />
+
 ## Submission Post
 
 I published my full submission on DEV.to with the complete walkthrough, architecture, and demo flow:
